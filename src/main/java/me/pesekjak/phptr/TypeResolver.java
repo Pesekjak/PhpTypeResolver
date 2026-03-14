@@ -8,6 +8,18 @@ public class TypeResolver {
 
     private static final String TAGS_NAME = "var";
 
+    /**
+     * Resolves PhpType of a given variable from its DocBlock.
+     * <p>
+     * The resolver inspects {@code var} tags. It prioritizes exact match
+     * of variable name and does fallback to first anonymous tag if no
+     * exact match is found.
+     * <p>
+     * If no matching or anonymous tag is found, {@link PhpType#MIXED} is returned.
+     *
+     * @param variable php variable to inspect
+     * @return the resolved {@link PhpType} or {@link PhpType#MIXED} if no matching tag is found
+     */
     public PhpType inferTypeFromDoc(PhpVariable variable) {
         Objects.requireNonNull(variable, "Variable can not be null");
 
